@@ -59,7 +59,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDial" name="bigFellaDial">
+       <widget class="Gauge" name="bigFellaDial">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -127,7 +127,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDial" name="smallBuddyDial">
+       <widget class="Gauge" name="smallBuddyDial">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -176,7 +176,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDial" name="tinyLadDial">
+       <widget class="Gauge" name="tinyLadDial">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -225,7 +225,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDial" name="littlePalDial">
+       <widget class="Gauge" name="littlePalDial">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -410,6 +410,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Gauge</class>
+   <extends>QDial</extends>
+   <header>gauges/gauges_qt.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>channelEdit</tabstop>
   <tabstop>channelSwitchButton</tabstop>
