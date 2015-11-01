@@ -8,7 +8,8 @@ from autobahn.twisted.wamp import ApplicationSession
 from autobahn.twisted.wamp import ApplicationRunner
 from autobahn.wamp.types import PublishOptions
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtGui import QIntValidator
+from PyQt5.QtCore import QRegularExpression
+from PyQt5.QtGui import QRegularExpressionValidator
 from PyQt5.QtWidgets import qApp
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QMainWindow
@@ -19,6 +20,7 @@ from gauges.ui.main_window_ui import Ui_MainWindow
 
 
 PREFIX = 'io.crossbar.demo.gauges'
+CHANNEL_REGEXP = QRegularExpression('^\d{6,6}$')
 
 
 class GaugesSessionWindow(QMainWindow, Ui_MainWindow, ApplicationSession):
@@ -40,8 +42,8 @@ class GaugesSessionWindow(QMainWindow, Ui_MainWindow, ApplicationSession):
         for i, (_, slider) in enumerate(self._controls):
             slider.valueChanged.connect(partial(self.changeValue, i))
 
-        self.channelEdit.setValidator(QIntValidator(100000, 999999))
-        self.channelEdit.setText(str(self._channel))
+        self.channelEdit.setValidator(QRegularExpressionValidator(CHANNEL_REGEXP))
+        self.channelEdit.setText(self._channel)
 
     @inlineCallbacks
     def onJoin(self, details):
@@ -62,19 +64,19 @@ class GaugesSessionWindow(QMainWindow, Ui_MainWindow, ApplicationSession):
         backgroundFormat = 'QLineEdit {{ background-color: {}; }}'
         if self.channelEdit.hasAcceptableInput():
             self.channelEdit.setStyleSheet(backgroundFormat.format('#efe'))
-            self.channelSwitchButton.setEnabled(int(text) != self._channel)
+            self.channelSwitchButton.setEnabled(text != self._channel)
         else:
             self.channelEdit.setStyleSheet(backgroundFormat.format('#fee'))
             self.channelSwitchButton.setEnabled(False)
-        self.channelCancelButton.setEnabled(int(text) != self._channel)
+        self.channelCancelButton.setEnabled(text != self._channel)
 
     @pyqtSlot()
     def on_channelCancelButton_clicked(self):
-        self.channelEdit.setText(str(self._channel))
+        self.channelEdit.setText(self._channel)
 
     @pyqtSlot()
     def on_channelSwitchButton_clicked(self):
-        self.switchChannel(int(self.channelEdit.text()))
+        self.switchChannel(self.channelEdit.text())
 
     @inlineCallbacks
     def switchChannel(self, channel):
@@ -120,7 +122,7 @@ class GaugesSessionWindow(QMainWindow, Ui_MainWindow, ApplicationSession):
 
     @classmethod
     def topic(cls, channel, index):
-        return '.'.join([PREFIX, str(channel), 'g' + str(index)])
+        return '.'.join([PREFIX, channel, 'g' + str(index)])
 
 
 def make(config):
@@ -131,10 +133,9 @@ def make(config):
 
 def parse_args():
     def channel(string):
-        value = int(string)
-        if value < 100000 or 999999 < value:
-            raise ArgumentTypeError('must be a 6-digit integer')
-        return value
+        if not CHANNEL_REGEXP.match(string):
+            raise ArgumentTypeError('must be a 6-digit string')
+        return string
 
     parser = ArgumentParser(description='PyQt version of Crossbar Gauges demo.')
     parser.add_argument('--url',
@@ -144,7 +145,7 @@ def parse_args():
                         help='WAMP router URL (default: ws://127.0.0.1:8080/ws).')
     parser.add_argument('--channel',
                         type=channel,
-                        default=randint(100000, 999999),
+                        default=str(randint(100000, 999999)),
                         metavar='<channel>',
                         help='Initial 6-digit controller channel (default: random)')
 
