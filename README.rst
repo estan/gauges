@@ -5,7 +5,7 @@ PyQt5 + Autobahn/Twisted version of Crossbar Gauges demo using Python 2.
 
 Download with::
 
-   $ git clone https://github.com/estan/gauges
+   $ git clone git@github.com:estan/gauges.git
 
 Install with::
 
