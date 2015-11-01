@@ -5,7 +5,6 @@ try:
     cmdclass={'build_ui': build_ui}
 except ImportError:
     cmdclass={}
-    pass
 
 setup(
     name='gauges',
