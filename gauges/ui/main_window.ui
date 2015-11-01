@@ -414,7 +414,7 @@
   <customwidget>
    <class>Gauge</class>
    <extends>QDial</extends>
-   <header>gauges/gauges_qt.h</header>
+   <header>gauges/ui/gauge.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

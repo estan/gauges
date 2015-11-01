@@ -8,11 +8,8 @@ from autobahn.twisted.wamp import ApplicationSession
 from autobahn.twisted.wamp import ApplicationRunner
 from autobahn.wamp.types import PublishOptions
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIntValidator
-from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import qApp
-from PyQt5.QtWidgets import QDial
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QMainWindow
 import qt5reactor
@@ -22,18 +19,6 @@ from gauges.ui.main_window_ui import Ui_MainWindow
 
 
 PREFIX = 'io.crossbar.demo.gauges'
-
-
-class Gauge(QDial):
-    """Custom QDial with current value shown in middle."""
-
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        font = painter.font()
-        font.setPointSize(self.width() / 6.0)
-        painter.setFont(font)
-        painter.drawText(self.rect(), Qt.AlignCenter | Qt.AlignVCenter, str(self.value()))
-        QDial.paintEvent(self, event)
 
 
 class GaugesSessionWindow(QMainWindow, Ui_MainWindow, ApplicationSession):

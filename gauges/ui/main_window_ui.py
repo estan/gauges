@@ -194,4 +194,4 @@ class Ui_MainWindow(object):
         self.channelCancelButton.setToolTip(_translate("MainWindow", "Cancel controller channel editing."))
         self.channelCancelButton.setText(_translate("MainWindow", "Cancel"))
 
-from gauges.gauges_qt import Gauge
+from gauges.ui.gauge import Gauge
