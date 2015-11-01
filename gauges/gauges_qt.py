@@ -147,7 +147,7 @@ def parse_args():
                         help='WAMP router URL (default: ws://127.0.0.1:8080/ws).')
     parser.add_argument('--channel',
                         type=channel,
-                        default=str(randint(100000, 999999)),
+                        default=str(randint(0, 999999)).zfill(6),
                         metavar='<channel>',
                         help='Initial 6-digit controller channel (default: random)')
 
