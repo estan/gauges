@@ -27,6 +27,7 @@ setup(
         'autobahn',
         'twisted',
         'pyOpenSSL',
+        'service_identity',
         'qt5reactor-fork',
     ],
     entry_points={
