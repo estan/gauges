@@ -1,0 +1,11 @@
+{
+    "files": [
+        [
+            "gauges/ui/*.ui",
+            "gauges/ui"
+        ]
+    ], 
+    "pyrcc": "pyrcc5", 
+    "pyuic": "pyuic5", 
+    "pyuic_options": "--from-import"
+}
