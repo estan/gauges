@@ -26,6 +26,7 @@ setup(
     install_requires=[
         'autobahn',
         'twisted',
+        'pyOpenSSL',
         'qt5reactor-fork',
     ],
     entry_points={
