@@ -93,7 +93,7 @@ class GaugesSessionWindow(QMainWindow, Ui_MainWindow, ApplicationSession):
         self._channel = channel
 
         # Set some random initial slider values.
-        for i, (_, slider) in enumerate(self._controls):
+        for _, slider in self._controls:
             slider.setValue(randint(0, 100))
 
         self.statusBar().showMessage('Subscribed to channel {} in realm {} at {}'
