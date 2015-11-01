@@ -1,6 +1,11 @@
 from setuptools import setup, find_packages
 
-from pyqt_distutils.build_ui import build_ui
+try:
+    from pyqt_distutils.build_ui import build_ui
+    cmdclass={'build_ui': build_ui}
+except ImportError:
+    cmdclass={}
+    pass
 
 setup(
     name='gauges',
@@ -28,5 +33,5 @@ setup(
             'gauges-qt=gauges.gauges_qt:main'
         ],
     },
-    cmdclass={'build_ui': build_ui}
+    cmdclass=cmdclass
 )
