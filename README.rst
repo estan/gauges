@@ -18,3 +18,9 @@ Run against the Crossbar demo router with::
 
    $ gauges-qt --url wss://demo.crossbar.io/ws
 
+Screenshot
+----------
+
+.. image:: https://raw.githubusercontent.com/estan/gauges/master/screenshot.png
+    :alt: Screenshot of the demo client
+    :align: center
