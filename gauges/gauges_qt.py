@@ -101,6 +101,8 @@ class GaugesSessionWindow(QMainWindow, Ui_MainWindow, ApplicationSession):
         self.statusBar().showMessage('Subscribed to channel {} in realm {} at {}'
                                      .format(self._channel, self.config.realm,
                                              self.config.extra['url']))
+        self.channelSwitchButton.setEnabled(False)
+        self.channelCancelButton.setEnabled(False)
 
     def updateControls(self, index, value):
         self.dial(index).setValue(value)
