@@ -1,7 +1,7 @@
 PyQt5 + Autobahn/Twisted Gauges Demo
 ====================================
 
-PyQt5 + Autobahn/Twisted version of Crossbar Gauges demo using Python 2.
+PyQt5 + Autobahn/Twisted version of the Crossbar Gauges demo_ using Python 2.
 
 Download with::
 
@@ -24,3 +24,5 @@ Screenshot
 .. image:: https://raw.githubusercontent.com/estan/gauges/master/screenshot.png
     :alt: Screenshot of the demo client
     :align: center
+
+.. _demo: https://demo.crossbar.io/gauges/index.html
