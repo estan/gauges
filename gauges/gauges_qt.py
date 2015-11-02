@@ -135,7 +135,7 @@ def make(config):
 
 def parse_args():
     def channel(string):
-        if not CHANNEL_REGEXP.match(string):
+        if not CHANNEL_REGEXP.match(string).hasMatch():
             raise ArgumentTypeError('must be a 6-digit string')
         return string
 
