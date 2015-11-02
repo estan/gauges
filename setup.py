@@ -27,7 +27,7 @@ setup(
         'twisted',
         'pyOpenSSL',
         'service_identity',
-        'qt5reactor-fork',
+        'qt5reactor',
     ],
     entry_points={
         'gui_scripts': [
